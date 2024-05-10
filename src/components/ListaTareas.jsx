@@ -7,15 +7,21 @@ function ListaTareas() {
 
   const [tareas, setTareas] = useState([]);
   const agregarTarea = tarea => {
-    console.log("Tarea agregada");
+    if (tarea.texto.trim()){
+      tarea.texto = tarea.texto.trim();
+      const tareasActualizadas = [tarea, ...tareas];
+      setTareas(tareasActualizadas);
+    }
   }
   return (
     <>
-      <TareaFormulario />
+      <TareaFormulario onSubmit= {agregarTarea} />
       <div className="tareas-listas-contenedor">
         {
           tareas.map((tarea)=>
-            <Tarea 
+            <Tarea
+              key={tarea.id}
+              id={tarea.id} 
               texto={tarea.texto}
               completada = {tarea.completada}
             />
