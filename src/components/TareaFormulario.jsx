@@ -17,11 +17,13 @@ function TareaFormulario(props) {
     const tareaNueva = {
       id: uuidv4(),
       texto: input,
-      ccompletada: false
+      completada: false
     }
     props.onSubmit(tareaNueva)
-  }
 
+    // Se limpia el input despues de enviar la tarea
+    setInput('');
+  }
 
   return (
     <form className="tarea-formulario"
@@ -31,6 +33,7 @@ function TareaFormulario(props) {
         type="text"
         placeholder="Escribe una tarea"
         name="texto"
+        value={input}
         onChange={manejarCambio}
       />
       <button className="tarea-boton"> Agregar Tarea</button>
